@@ -1,31 +1,34 @@
 let menu = {
   _courses: {
-    _appetizers: [],
-    _mains: [],
-    _desserts: [],
-    get appetizers() {return this._appetizers;},
-    get mains() {return this._mains;},
-    get desserts() {return this._desserts;},
-    set appetizers(appysSelect) {this._appetizers = appysSelect;}, 
-    set mains(mainsSelect) {this._mains = mainsSelect;},
-    set desserts(dessertsSelect) {this._desserts = dessertsSelect;},
+    appetizers: [],
+    mains: [],
+    desserts: []
   },
+  get appetizers() {return this._courses.appetizers;},
+  get mains() {return this._courses.mains;},
+  get desserts() {return this._courses.desserts;},
+  set appetizers(appysSelect) {this._courses.appetizers = appysSelect;}, 
+  set mains(mainsSelect) {this._courses.mains = mainsSelect;},
+  set desserts(dessertsSelect) {this._courses.desserts = dessertsSelect;},
   get courses() {
-    return this._courses;
+      return {
+        appetizers: this.appetizers,
+        mains: this.mains,
+        desserts: this.desserts,};
   },
   addDishToCourse: function (courseName, dishName, dishPrice) {
     let dish = {};
     dish.name = dishName;
     dish.price = dishPrice;
     if(courseName === 'appetizers') {
-      this.courses.appetizers.push(dish);
+      this.appetizers.push(dish);
     };
     if(courseName === 'mains') {
-      this.courses.mains.push(dish);
+      this.mains.push(dish);
     };
     if(courseName === 'desserts') {
-      this.courses.desserts.push(dish);
-    };  
+      this.desserts.push(dish);
+    };   
   },
   getRandomDishFromCourse: function (courseName){
     let dishes = this.courses[courseName];
@@ -37,7 +40,7 @@ let menu = {
     let main = this.getRandomDishFromCourse('mains');
     let dessert = this.getRandomDishFromCourse('desserts');
     let totalPrice = appetizer.price + main.price + dessert.price;
-    return `Your meal is an appetizer of ${appetizer.name}, a main of ${main.name}, and a dessert of ${dessert.name}. The total of this meal will be ${totalPrice}`;
+    return `Your meal is an appetizer of ${appetizer.name}, a main of ${main.name}, and a dessert of ${dessert.name}. The total of this meal will be ${totalPrice.toFixed(2)}`;
   }
 };
 
