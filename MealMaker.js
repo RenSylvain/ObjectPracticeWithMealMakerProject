@@ -20,15 +20,7 @@ let menu = {
     let dish = {};
     dish.name = dishName;
     dish.price = dishPrice;
-    if(courseName === 'appetizers') {
-      this.appetizers.push(dish);
-    };
-    if(courseName === 'mains') {
-      this.mains.push(dish);
-    };
-    if(courseName === 'desserts') {
-      this.desserts.push(dish);
-    };   
+      this[courseName].push(dish);
   },
   getRandomDishFromCourse: function (courseName){
     let dishes = this.courses[courseName];
