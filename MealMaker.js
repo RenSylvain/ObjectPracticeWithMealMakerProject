@@ -20,7 +20,9 @@ let menu = {
     let dish = {};
     dish.name = dishName;
     dish.price = dishPrice;
-      this[courseName].push(dish);
+    courseName in this.courses ?  
+      this[courseName].push(dish) : 
+      console.log(`Error: Unable to add dish. '${courseName}' is not a valid course.`);
   },
   getRandomDishFromCourse: function (courseName){
     let dishes = this.courses[courseName];
